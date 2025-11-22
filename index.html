@@ -1,356 +1,428 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmad Chakik | Chairman - Opal Management Consultancy</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1f2937;
-            margin: 0;
-            padding: 0;
-        }
-        .card-container {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-            max-width: 400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-        .profile-header {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            padding: 2rem 1.5rem;
-            text-align: center;
-        }
-        .profile-img {
-            width: 120px;
-            height: 150px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid #d1d5db;
-            transition: transform 0.2s ease;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-        .action-button {
-            background: #3b82f6;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-weight: 500;
-            transition: background 0.2s ease, transform 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .action-button:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
-        .action-button.call {
-            background: #10b981;
-        }
-        .action-button.call:hover {
-            background: #059669;
-        }
-        .action-button.email {
-            background: #ef4444;
-        }
-        .action-button.email:hover {
-            background: #dc2626;
-        }
-        .action-button.save {
-            background: #6b7280;
-        }
-        .action-button.save:hover {
-            background: #4b5563;
-        }
-        .section {
-            padding: 1.5rem;
-            border-bottom: 1px solid #f3f4f6;
-        }
-        .section:last-child {
-            border-bottom: none;
-        }
-        .icon-link {
-            color: #6b7280;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .icon-link:hover {
-            color: #3b82f6;
-            transform: scale(1.1);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            width: 90%;
-        }
-        .modal-button {
-            background: #3b82f6;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            padding: 0.75rem 1.5rem;
-            font-weight: 500;
-            margin: 0 0.5rem;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-        .modal-button:hover {
-            background: #2563eb;
-        }
-        .modal-button.whatsapp {
-            background: #25d366;
-        }
-        .modal-button.whatsapp:hover {
-            background: #128c7e;
-        }
-        .modal-button.cancel {
-            background: #6b7280;
-        }
-        .modal-button.cancel:hover {
-            background: #4b5563;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ahmad Chakik — Chairman — Opal World Technologies</title>
+
+  <!-- FONT (Poppins similar) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======= BRAND & THEME ======= */
+    :root{
+      --opal-red: #d92d27;
+      --opal-green: #008f4c;
+      --opal-blue: #0057b8;
+      --opal-dark: #0a0a0a;
+
+      --bg: #ffffff;
+      --muted: #f5f7fb;
+      --card-shadow: 0 12px 30px rgba(12, 18, 36, 0.08);
+      --glass-bg: rgba(255,255,255,0.72);
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+      --text: #0f1724;
+      --muted-text: #6b7280;
+    }
+
+    /* ======= RESET ======= */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#f3f5f9 0%,#ffffff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      overflow-y: auto;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ======= LAYOUT ======= */
+    .container{width:100%;max-width:1200px;margin:0 auto;padding:24px}
+    .grid{display:grid;gap:24px}
+    .cols-12{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+    @media (max-width: 992px){ .cols-12{grid-template-columns:1fr} }
+
+    /* ======= HERO PROFILE SECTION ======= */
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      padding:48px 0;
+    }
+
+    /* faint lined background */
+    .lined-bg{
+      position:absolute;inset:0;pointer-events:none;z-index:0;
+      background-image:
+        linear-gradient(to right, rgba(128,128,128,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(128,128,128,0.06) 1px, transparent 1px);
+      background-size:24px 24px;
+    }
+
+    /* soft color glows */
+    .glow-left,.glow-right{
+      position:absolute;border-radius:50%;
+      filter:blur(120px);opacity:.36;z-index:0;
+    }
+    .glow-left{left:-10%;top:5%;width:600px;height:600px;background:rgba(0,111,255,0.06)}
+    .glow-right{right:-10%;bottom:5%;width:600px;height:600px;background:rgba(217,45,39,0.06)}
+
+    /* right image panel (angled) */
+    .right-panel{
+      position:absolute;top:0;right:0;height:100%;width:48%;
+      background-image:url('https://images.pexels.com/photos/2304895/pexels-photo-2304895.jpeg');
+      background-size:cover;background-position:center;
+      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+      z-index:1;
+    }
+    .right-gradient{
+      position:absolute;top:0;right:0;height:100%;width:48%;
+      background: linear-gradient(90deg, #fff 10%, rgba(255,255,255,0) 100%);z-index:2;
+    }
+
+    /* column layout inside container */
+    .left-col{grid-column:1/7}
+    .right-col{grid-column:7/13}
+    @media (max-width: 992px){ .left-col,.right-col{grid-column:1/-1} .right-panel{display:none}.right-gradient{display:none} }
+
+    /* profile card */
+    .profile-card{
+      background:var(--glass-bg);
+      border-radius:var(--radius-xl);
+      padding:22px;
+      box-shadow:var(--card-shadow);
+      border:1px solid rgba(255,255,255,0.6);
+      position:relative;
+      overflow:hidden;
+    }
+    .profile-card .image-wrap{
+      width:192px;height:240px;margin:10px auto 18px;border-radius:18px;overflow:hidden;border:4px solid #fff;box-shadow:0 20px 40px rgba(0,0,0,0.08);position:relative;
+    }
+    .profile-card img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .title{font-size:28px;font-weight:800;letter-spacing:0.6px}
+    .role-badge{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid rgba(217,45,39,0.12);background:rgba(217,45,39,0.06);color:var(--opal-red);font-weight:700;font-size:13px;margin-top:12px}
+
+    .profile-meta{margin-top:18px;color:var(--muted-text);font-size:14px}
+    .profile-meta p{margin:6px 0;display:flex;align-items:center;gap:8px;justify-content:center}
+
+    .actions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;
+      transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--opal-blue);color:#fff;box-shadow:0 10px 24px rgba(0,87,184,0.12)}
+    .btn-ghost{background:#fff;border:1px solid #e6e6e6;color:#333}
+    .btn-dark{background:#111;color:#fff}
+    .btn:hover{transform:translateY(-4px)}
+
+    /* right content cards */
+    .glass-card{
+      background:var(--glass-bg);border-radius:22px;padding:22px;border-left:6px solid var(--opal-red);box-shadow:var(--card-shadow);position:relative;overflow:hidden;
+    }
+    .big-image{
+      border-radius:18px;overflow:hidden;height:270px;width:100%;position:relative;box-shadow:var(--card-shadow)
+    }
+    .big-image img{width:100%;height:100%;object-fit:cover}
+
+    .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .contact-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;border:1px solid transparent;background:#fff}
+    .contact-row:hover{background:#f8fafc;border-color:#edf2f7;cursor:pointer}
+    .contact-flag{width:44px;height:44px;border-radius:10px;background:#f3f4f6;display:flex;align-items:center;justify-content:center;color:#6b7280}
+
+    /* social */
+    .socials{display:flex;gap:12px;justify-content:center;margin-top:6px}
+    .socials a{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:#fff;border:1px solid #f0f0f0;box-shadow:0 8px 18px rgba(0,0,0,0.06)}
+    .socials a:hover{transform:scale(1.08)}
+
+    /* footer small */
+    footer{padding:40px 0;text-align:center;color:var(--muted-text);font-size:13px;margin-top:36px}
+
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999}
+    .modal{width:100%;max-width:420px;background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.45);position:relative}
+    .modal .close{position:absolute;top:12px;right:12px;background:#f3f4f6;border-radius:999px;padding:8px;border:none;cursor:pointer}
+    .modal .phone-big{font-family:monospace;font-weight:700;font-size:20px;color:#111;margin-top:8px}
+
+    /* small responsive */
+    @media (max-width:768px){
+      .profile-card .image-wrap{width:160px;height:200px}
+      .title{font-size:22px}
+      .btn{padding:10px 12px}
+      .container{padding:18px}
+    }
+  </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
 
-    <div class="card-container">
-        
-        <!-- Header & Profile Section -->
-        <div class="profile-header">
-            <img src="https://iili.io/KDZcfWB.md.jpg" alt="Ahmad Chakik Profile" 
-                 class="profile-img mx-auto mb-4"
-                 onerror="this.onerror=null; this.src='https://via.placeholder.com/120x150/9ca3af/ffffff?text=PROFILE'">
-            <h1 class="text-2xl font-bold text-gray-900 mb-1">AHMAD CHAKIK</h1>
-            <p class="text-red-600 font-medium">Chairman</p>
-            <div class="text-xs text-gray-600 mt-2">
-                <p>OPAL Management Consultancy Pte. Ltd.</p>
-                <p>OPAL WORLD TECHNOLOGIES L.L.C. | OPAL MINING CO LTD</p>
-            </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="section">
-            <div class="grid grid-cols-2 gap-3">
-                <a href="#" onclick="showPhoneOptions('+971509601323')" class="action-button call">
-                    <i data-lucide="phone" class="w-4 h-4 mr-2"></i> Call Dubai
-                </a>
-                <a href="mailto:chakik@opal-grp.com" class="action-button email">
-                    <i data-lucide="mail" class="w-4 h-4 mr-2"></i> Email
-                </a>
-                <a href="https://www.opal-grp.com" target="_blank" class="action-button">
-                    <i data-lucide="globe" class="w-4 h-4 mr-2"></i> Website
-                </a>
-                <a href="#" onclick="downloadVCard()" class="action-button save">
-                    <i data-lucide="user-plus" class="w-4 h-4 mr-2"></i> Save Contact
-                </a>
-            </div>
-        </div>
-
-        <!-- Global Contact List -->
-        <div class="section">
-            <h3 class="text-lg font-semibold mb-3 text-gray-900 flex items-center">
-                <i data-lucide="briefcase" class="w-5 h-5 mr-2 text-red-600"></i> Global Contact Points
-            </h3>
-            <ul class="space-y-2 text-sm">
-                <li class="flex items-start">
-                    <i data-lucide="mail" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Email (Secondary):</span> <a href="mailto:chakik@consultant.com" class="text-blue-600 hover:underline">chakik@consultant.com</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="flag" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Dubai (UAE):</span> <a href="#" onclick="showPhoneOptions('+971509601323')" class="text-blue-600 hover:underline">+971 50960 1323</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="flag" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Qatar:</span> <a href="#" onclick="showPhoneOptions('+97433961119')" class="text-blue-600 hover:underline">+974 3396 1119</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="flag" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Lebanon:</span> <a href="#" onclick="showPhoneOptions('+96179139129')" class="text-blue-600 hover:underline">+961 79 139 129</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="flag" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Turkey:</span> <a href="#" onclick="showPhoneOptions('+905388499119')" class="text-blue-600 hover:underline">+90 538 849 9119</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="flag" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Sudan:</span> <a href="#" onclick="showPhoneOptions('+249991959595')" class="text-blue-600 hover:underline">+249 99195 9595</a>
-                    </div>
-                </li>
-                <li class="flex items-start">
-                    <i data-lucide="map-pin" class="w-4 h-4 mr-2 mt-0.5 text-gray-500"></i>
-                    <div>
-                        <span class="font-medium text-gray-700">Address:</span> Dubai National Insurance Building, Office No. 302 Port Saeed, Dubai, UAE
-                    </div>
-                </li>
-            </ul>
-        </div>
-        
-        <!-- Biography -->
-        <div class="section">
-            <h3 class="text-lg font-semibold mb-3 text-gray-900 flex items-center">
-                <i data-lucide="sparkles" class="w-5 h-5 mr-2 text-red-600"></i> Expertise & Vision
-            </h3>
-            <p class="text-gray-600 text-sm leading-relaxed">
-                Mr. Ahmad Chakik, Chairman, is the founder of OPAL MINING CO LTD and a prominent Lebanese businessman with <strong>over 3 decades of experience</strong> in Investment, Mining, and Financial Management across Africa and the UAE. He possesses extensive strategic links across <strong>China, the Middle East, Asia, and Africa</strong>.
-                <br><br>
-                His multi-disciplinary expertise spans diverse fields including <strong>trade, oil & gas, banking, mining, food, technology, and agriculture</strong>. He is also the founder or shareholder of several multinational companies, including <strong>Active Management Consultant FZC, Everon Building Cleaning Services LLC, and Bianco Plus Quarries Co. Ltd.</strong> His strategic insight drives Opal Management Consultancy's vision for a smarter, safer, and more sustainable future.
-            </p>
-            <a href="https://www.opal-grp.com/about" target="_blank" class="mt-3 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800">
-                Read Full Bio 
-                <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
-            </a>
-        </div>
-
-        <!-- Award Image -->
-        <div class="section">
-            <img src="https://www.opal-sg.com/images/design-mode/Ahmad%20Chakik%20Award.jpeg" alt="Ahmad Chakik Award" class="w-full rounded-lg object-cover" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300/9ca3af/ffffff?text=AWARD'">
-        </div>
-
-        <!-- Social/Digital Links -->
-        <div class="section">
-            <h3 class="text-lg font-semibold mb-3 text-gray-900 flex items-center">
-                <i data-lucide="link" class="w-5 h-5 mr-2 text-red-600"></i> Connect Digitally
-            </h3>
-            <div class="flex justify-center space-x-4">
-                <a href="https://www.linkedin.com/in/ahmadchakik" target="_blank" class="icon-link">
-                    <i data-lucide="linkedin" class="w-6 h-6"></i>
-                </a>
-                <a href="https://twitter.com/ahmadchakik" target="_blank" class="icon-link">
-                    <i data-lucide="twitter" class="w-6 h-6"></i>
-                </a>
-                <a href="https://www.facebook.com/ahmad.chakik" target="_blank" class="icon-link">
-                    <i data-lucide="facebook" class="w-6 h-6"></i>
-                </a>
-                <a href="https://www.opalworldtech.com" target="_blank" class="icon-link">
-                    <i data-lucide="globe" class="w-6 h-6"></i>
-                </a>
-                <a href="https://www.opal-sg.com" target="_blank" class="icon-link">
-                    <i data-lucide="globe" class="w-6 h-6"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="text-center text-xs text-gray-500 py-4">
-            Opal Management Consultancy Pte. Ltd. | Opal World Technologies L.L.C.
-        </div>
+  <header style="padding:18px 24px;background:transparent;position:sticky;top:0;z-index:50">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+      </div>
+      <nav style="display:flex;gap:14px;align-items:center">
+        <a href="#" style="color:var(--muted-text)">Home</a>
+        <a href="#" style="color:var(--muted-text)">Overview</a>
+        <a href="#" style="color:var(--muted-text)">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Modal for Phone Options -->
-    <div id="phoneModal" class="modal">
-        <div class="modal-content">
-            <h2 class="text-xl font-bold mb-4 text-gray-900">Choose Call Option</h2>
-            <p id="phoneNumber" class="mb-4 text-gray-700"></p>
-            <div class="flex justify-center">
-                <button onclick="callNormal()" class="modal-button">Normal Call</button>
-                <button onclick="callWhatsApp()" class="modal-button whatsapp">WhatsApp</button>
+  <!-- HERO / PROFILE -->
+  <main class="hero">
+    <div class="lined-bg"></div>
+    <div class="glow-left"></div>
+    <div class="glow-right"></div>
+
+    <div class="right-panel" aria-hidden="true"></div>
+    <div class="right-gradient" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="cols-12">
+
+        <!-- LEFT column: profile card -->
+        <div class="left-col" style="z-index:10">
+          <div class="profile-card">
+
+            <div style="position:absolute;top:0;left:0;right:0;height:45px;background:linear-gradient(to bottom, rgba(217,45,39,0.06), rgba(255,255,255,0));z-index:0"></div>
+
+            <div style="position:relative;z-index:2;text-align:center">
+              <div class="image-wrap">
+                <img src="https://iili.io/KDZcfWB.md.jpg" alt="Ahmad Chakik">
+              </div>
+
+              <div class="title">AHMAD CHAKIK</div>
+              <div class="role-badge">CHAIRMAN</div>
+
+              <div class="profile-meta">
+                <p><strong style="color:#111">OPAL Management Consultancy Pte. Ltd.</strong></p>
+                <p><strong style="color:#111">OPAL WORLD TECHNOLOGIES L.L.C.</strong></p>
+                <p><strong style="color:#111">OPAL MINING CO LTD</strong></p>
+              </div>
+
+              <div class="actions-grid" style="margin-top:18px">
+                <button class="btn btn-primary" id="call-dubai" data-number="+971509601323">
+                  📞 Call Dubai
+                </button>
+
+                <a class="btn btn-ghost" href="mailto:chakik@opal-grp.com">
+                  ✉️ Email
+                </a>
+
+                <a class="btn btn-ghost" href="https://www.opal-grp.com" target="_blank" rel="noopener">
+                  🌐 Website
+                </a>
+
+                <button class="btn btn-dark" id="save-vcard">
+                  ➕ Save
+                </button>
+              </div>
             </div>
-            <button onclick="closeModal()" class="modal-button cancel mt-4">Cancel</button>
+          </div>
         </div>
+
+        <!-- RIGHT column: content -->
+        <div class="right-col" style="z-index:10">
+          <div style="display:flex;flex-direction:column;gap:18px">
+
+            <!-- BIO CARD -->
+            <section class="glass-card">
+              <div style="position:absolute;right:10px;top:10px;opacity:.06;font-size:130px;color:var(--opal-red);transform:rotate(0deg);">★</div>
+
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="padding:8px;border-radius:12px;background:rgba(217,45,39,0.06);color:var(--opal-red)"><strong>★</strong></div>
+                <h2 style="font-weight:800;font-size:18px;letter-spacing:1px;margin:0">INVESTMENT AND FINANCIAL MANAGEMENT EXPERT</h2>
+              </div>
+
+              <div style="color:var(--muted-text);font-size:15px;text-align:justify;line-height:1.6">
+                <p><strong style="color:#111">Mr. Ahmad Chakik</strong> brings over <strong>three decades of experience</strong> in investment, mining, and financial management, having held leadership roles in various companies across Africa and the United Arab Emirates.</p>
+                <p>He maintains an extensive network of strategic relationships spanning <strong>China, the Middle East, Asia, and Africa</strong>. He has established multiple companies in Dubai, Turkey, Singapore, and Qatar, and represents several state-owned enterprises working in construction, power, and infrastructure.</p>
+              </div>
+            </section>
+
+            <!-- AWARD IMAGE -->
+            <div class="big-image">
+              <img src="https://www.opal-sg.com/images/design-mode/Ahmad%20Chakik%20Award.jpeg" alt="Award Ceremony">
+              <div style="position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);padding:8px 12px;border-radius:8px;color:#fff;font-weight:700">Global Recognition</div>
+            </div>
+
+            <!-- CONTACT LIST -->
+            <section style="background:#fff;padding:18px;border-radius:18px;box-shadow:var(--card-shadow);border:1px solid #f1f5f9">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <div style="padding:8px;border-radius:12px;background:rgba(0,87,184,0.06);color:var(--opal-blue)"><strong>🌍</strong></div>
+                <h3 style="font-weight:800;margin:0">Global Direct Lines</h3>
+              </div>
+
+              <div class="contact-grid" id="phone-list">
+                <!-- rows injected by JS for fidelity -->
+              </div>
+
+              <div style="margin-top:14px;border-top:1px solid #f3f4f6;padding-top:14px">
+                <div style="display:flex;gap:12px;align-items:flex-start">
+                  <div style="width:44px;height:44px;border-radius:8px;background:rgba(217,45,39,0.06);display:flex;align-items:center;justify-content:center;color:var(--opal-red)">📍</div>
+                  <div>
+                    <p style="font-size:12px;color:#9ca3af;font-weight:700;margin:0">GLOBAL HEADQUARTERS</p>
+                    <p style="margin:6px 0 0 0;font-weight:600;color:#111">Dubai National Insurance Building, Office No.302 Port Saeed, Dubai, UAE</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- SOCIALS -->
+            <div style="text-align:center">
+              <div class="socials" aria-hidden="false">
+                <a href="https://www.linkedin.com/in/ahmadchakik" target="_blank" rel="noopener" title="LinkedIn">in</a>
+                <a href="https://twitter.com/ahmadchakik" target="_blank" rel="noopener" title="Twitter">tw</a>
+                <a href="https://www.facebook.com/ahmad.chakik" target="_blank" rel="noopener" title="Facebook">fb</a>
+                <a href="https://www.opalworldtech.com" target="_blank" rel="noopener" title="Website">🌐</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
-    
-    <!-- JavaScript -->
-    <script>
-        lucide.createIcons();
+  </main>
 
-        let currentPhone = '';
+  <!-- footer -->
+  <footer>
+    Strictly Confidential • Opal World Technologies
+  </footer>
 
-        function showPhoneOptions(phone) {
-            currentPhone = phone;
-            document.getElementById('phoneNumber').textContent = phone;
-            document.getElementById('phoneModal').style.display = 'flex';
+  <!-- ===== MODAL (hidden by default) ===== -->
+  <div id="modal-root" style="display:none"></div>
+
+  <script>
+    (function () {
+      // ===== phone data (from original) =====
+      const phoneNumbers = [
+        { country: "Dubai (UAE)", number: "+971509601323", label: "+971 50 960 1323" },
+        { country: "Qatar", number: "+97433961119", label: "+974 3396 1119" },
+        { country: "Lebanon", number: "+96179139129", label: "+961 79 139 129" },
+        { country: "Turkey", number: "+905388499119", label: "+90 538 849 9119" },
+        { country: "Sudan", number: "+249991959595", label: "+249 99 195 9595" }
+      ];
+
+      // ===== render phone list =====
+      const phoneList = document.getElementById('phone-list');
+      phoneNumbers.forEach(item => {
+        const btn = document.createElement('button');
+        btn.className = 'contact-row';
+        btn.type = 'button';
+        btn.innerHTML = `
+          <div class="contact-flag">🏳️</div>
+          <div>
+            <p style="font-size:11px;margin:0;color:#9ca3af;font-weight:700;text-transform:uppercase">${item.country}</p>
+            <p style="font-weight:700;margin:4px 0 0 0;font-family:monospace">${item.label}</p>
+          </div>
+        `;
+        btn.addEventListener('click', () => openPhoneModal(item.number));
+        phoneList.appendChild(btn);
+      });
+
+      // ===== buttons in profile card =====
+      const callDubaiBtn = document.getElementById('call-dubai');
+      if (callDubaiBtn) {
+        callDubaiBtn.addEventListener('click', function () {
+          openPhoneModal(this.dataset.number || '+971509601323');
+        });
+      }
+
+      // ===== vCard download =====
+      const vCardBtn = document.getElementById('save-vcard');
+      if (vCardBtn) vCardBtn.addEventListener('click', downloadVCard);
+
+      function downloadVCard(){
+        const vCardContent = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Ahmad Chakik',
+          'N:Chakik;Ahmad;;;',
+          'TITLE:Chairman',
+          'ORG:Opal Management Consultancy Pte. Ltd.',
+          'X-ORG:Opal World Technologies L.L.C.',
+          'TEL;TYPE=WORK,VOICE:+971509601323',
+          'TEL;TYPE=WORK,VOICE;X-COUNTRY=Qatar:+97433961119',
+          'TEL;TYPE=WORK,VOICE;X-COUNTRY=Lebanon:+96179139129',
+          'TEL;TYPE=WORK,VOICE;X-COUNTRY=Turkey:+905388499119',
+          'TEL;TYPE=WORK,VOICE;X-COUNTRY=Sudan:+249991959595',
+          'EMAIL;TYPE=WORK:chakik@opal-grp.com',
+          'URL:https://www.opal-grp.com',
+          'ADR;TYPE=WORK:;;Dubai National Insurance Building, Office No. 302 Port Saeed;Dubai;;;UAE',
+          'END:VCARD'
+        ].join('\\r\\n');
+
+        const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Ahmad_Chakik.vcf';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 200);
+      }
+
+      // ===== modal management =====
+      const modalRoot = document.getElementById('modal-root');
+
+      function openPhoneModal(number){
+        // if a modal is present, remove first
+        closeModal();
+
+        const backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop';
+        backdrop.addEventListener('click', closeModal);
+
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.addEventListener('click', e => e.stopPropagation());
+
+        modal.innerHTML = `
+          <button class="close" aria-label="Close modal">✕</button>
+          <div style="text-align:center;padding-top:6px">
+            <div style="width:64px;height:64px;border-radius:64px;background:#f3f7fb;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin:6px auto">📞</div>
+            <h3 style="margin:8px 0 0 0;font-weight:800">Contact Method</h3>
+            <div class="phone-big">${number}</div>
+            <div style="margin-top:18px;display:flex;flex-direction:column;gap:12px">
+              <a class="btn btn-dark" href="tel:${number}" style="display:inline-flex;justify-content:center">Normal Call</a>
+              <a class="btn" href="https://wa.me/${number.replace('+','')}" target="_blank" rel="noopener" style="background:#25D366;color:#fff;display:inline-flex;justify-content:center">WhatsApp</a>
+            </div>
+          </div>
+        `;
+
+        modal.querySelector('.close').addEventListener('click', closeModal);
+
+        backdrop.appendChild(modal);
+        document.body.appendChild(backdrop);
+
+        // store in modalRoot reference for cleanup
+        modalRoot._backdrop = backdrop;
+      }
+
+      function closeModal(){
+        if(modalRoot._backdrop){
+          modalRoot._backdrop.remove();
+          modalRoot._backdrop = null;
         }
+      }
 
-        function callNormal() {
-            window.location.href = 'tel:' + currentPhone;
-            closeModal();
-        }
+      // remove modal on Escape
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') closeModal();
+      });
 
-        function callWhatsApp() {
-            // Ensure the phone number is formatted correctly for WhatsApp (digits only, international format)
-            const cleanPhone = currentPhone.replace(/\D/g, '');
-            window.open('https://wa.me/' + cleanPhone, '_blank');
-            closeModal();
-        }
+    })();
+  </script>
 
-        function closeModal() {
-            document.getElementById('phoneModal').style.display = 'none';
-        }
-
-        function downloadVCard() {
-            const vCardContent = `BEGIN:VCARD
-VERSION:3.0
-FN:Ahmad Chakik
-N:Chakik;Ahmad;;;
-TITLE:Chairman
-ORG:Opal Management Consultancy Pte. Ltd.
-X-ORG:Opal World Technologies L.L.C.
-TEL;TYPE=WORK,VOICE:+971509601323
-TEL;TYPE=WORK,VOICE;X-COUNTRY=Qatar:+97433961119
-TEL;TYPE=WORK,VOICE;X-COUNTRY=Lebanon:+96179139129
-TEL;TYPE=WORK,VOICE;X-COUNTRY=Turkey:+905388499119
-TEL;TYPE=WORK,VOICE;X-COUNTRY=Sudan:+249991959595
-EMAIL;TYPE=WORK:chakik@opal-grp.com
-EMAIL;TYPE=WORK:chakik@consultant.com
-URL:https://www.opal-grp.com
-ADR;TYPE=WORK:;;Dubai National Insurance Building, Office No. 302 Port Saeed;Dubai;;;UAE
-END:VCARD`;
-
-            const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Ahmad_Chakik_vCard.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
-    </script>
 </body>
 </html>
