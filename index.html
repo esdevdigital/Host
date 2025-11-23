@@ -4,44 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmad Chakik | Digital Executive Profile</title>
-    <meta name="description" content="Chairman - Opal Management Consultancy & Opal World Technologies">
     
-    <!-- Fonts: Poppins -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS (CDN for standalone usage) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Configuration for Custom Colors/Fonts -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        opal: {
-                            red: "#d92d27",
-                            green: "#008f4c",
-                            blue: "#0057b8",
-                            dark: "#0a0a0a",
-                        }
-                    },
-                    animation: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: { opal: { red: "#d92d27", green: "#008f4c", blue: "#0057b8", dark: "#0a0a0a" } },
+                    animation: { 
+                        'float': 'float 6s ease-in-out infinite', 
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'float': 'float 6s ease-in-out infinite',
                     },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
+                    keyframes: { 
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } }
                     }
                 }
             }
@@ -49,523 +34,291 @@
     </script>
 
     <style>
-        /* Custom Styles for Glassmorphism & Backgrounds */
-        body {
-            background-color: #fafafa;
-            overflow-x: hidden;
+        body { background-color: #fafafa; overflow-x: hidden; margin: 0; }
+        
+        /* Glassmorphism */
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.75); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.6); 
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07); 
         }
-
-        .lined-background {
-            background-color: #ffffff;
-            background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
-                              linear-gradient(to bottom, #80808012 1px, transparent 1px);
-            background-size: 24px 24px;
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.6); 
+            backdrop-filter: blur(8px); 
+            border: 1px solid rgba(255, 255, 255, 0.4); 
+            transition: all 0.3s ease; 
         }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Expandable Section Transition */
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
-            opacity: 0;
-        }
-        .expandable-content.expanded {
-            max-height: 1000px; /* Arbitrary large height */
-            opacity: 1;
-        }
-
-        /* Modal Animation */
-        .modal-enter {
-            animation: modalIn 0.3s ease-out forwards;
+        .glass-card:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); 
         }
         
-        @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        /* Visuals */
+        .text-gradient-opal { background: linear-gradient(to right, #d92d27, #0057b8, #008f4c); -webkit-background-clip: text; color: transparent; }
 
-        /* Smooth Scroll */
+        /* Profile Utilities */
+        .expandable-content { max-height: 0; overflow: hidden; transition: all 0.5s ease; opacity: 0; }
+        .expandable-content.expanded { max-height: 1000px; opacity: 1; }
+        
+        /* Video Player Transitions */
+        .vp-hidden { opacity: 0; transform: translateY(10px) scale(0.95); }
+        .vp-visible { opacity: 1; transform: translateY(0) scale(1); }
+        
         html { scroll-behavior: smooth; }
     </style>
 </head>
-<body class="font-sans text-gray-900 antialiased relative">
+<body class="font-sans text-gray-900 antialiased">
 
-    <!-- BACKGROUND ANIMATIONS -->
-    <div class="fixed inset-0 z-[-1] pointer-events-none lined-background">
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-opal-red/10 rounded-full blur-[100px] animate-pulse-slow"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-opal-blue/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 1s;"></div>
-    </div>
-
-    <!-- MAIN CONTAINER -->
-    <main class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <!-- ================= PROFILE VIEW (MAIN) ================= -->
+    <div id="profile-view" class="relative min-h-screen flex flex-col items-center justify-center py-12 px-4">
         
-        <!-- DIGITAL CARD PROFILE -->
-        <div class="w-full max-w-md glass-panel rounded-[2.5rem] overflow-hidden shadow-2xl relative border-t border-white/80 animate-float">
-            
-            <!-- Top Gradient Bar -->
-            <div class="h-2 bg-gradient-to-r from-opal-red via-opal-blue to-opal-green w-full"></div>
+        <!-- Background -->
+        <div class="fixed inset-0 z-[-1] pointer-events-none bg-[#f8f9fa]">
+            <div class="absolute inset-0" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 32px 32px; opacity: 0.4;"></div>
+            <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-opal-red/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-opal-blue/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+        </div>
 
-            <!-- Profile Header -->
-            <div class="relative p-8 text-center pb-6">
-                <!-- Profile Image -->
+        <!-- Profile Card -->
+        <div class="w-full max-w-md glass-panel rounded-[2.5rem] overflow-hidden shadow-2xl border-t border-white/80 animate-float mb-12">
+            <div class="h-2 bg-gradient-to-r from-opal-red via-opal-blue to-opal-green w-full"></div>
+            
+            <!-- Header -->
+            <div class="p-8 text-center pb-6">
                 <div class="relative w-32 h-32 mx-auto mb-6">
                     <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-opal-red to-opal-blue opacity-20 blur-lg transform scale-110"></div>
                     <div class="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white shadow-lg">
                         <img src="https://iili.io/KDZcfWB.md.jpg" alt="Ahmad Chakik" class="w-full h-full object-cover">
                     </div>
-                    <!-- Status Dot -->
-                    <div class="absolute bottom-2 right-[-5px] w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
                 </div>
-
-                <h1 class="text-3xl font-black text-gray-900 mb-1 tracking-tight leading-none">AHMAD CHAKIK</h1>
+                <h1 class="text-3xl font-black text-gray-900 mb-1 tracking-tight">AHMAD CHAKIK</h1>
                 <p class="text-opal-red font-bold text-sm uppercase tracking-widest mb-4">Chairman</p>
-
-                <!-- Companies -->
+                
                 <div class="space-y-2 text-xs font-medium text-gray-600 bg-white/50 p-4 rounded-xl border border-white/60 text-left">
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="briefcase" class="w-3 h-3 text-opal-blue"></i> Opal Management Consultancy Pte. Ltd.
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="cpu" class="w-3 h-3 text-opal-green"></i> Opal World Technologies L.L.C.
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="gem" class="w-3 h-3 text-yellow-600"></i> Opal Mining Co Ltd
-                    </div>
+                    <div class="flex items-center gap-2"><i data-lucide="briefcase" class="w-3 h-3 text-opal-blue"></i> Opal Management Consultancy</div>
+                    <div class="flex items-center gap-2"><i data-lucide="cpu" class="w-3 h-3 text-opal-green"></i> Opal World Technologies</div>
+                    <div class="flex items-center gap-2"><i data-lucide="gem" class="w-3 h-3 text-yellow-600"></i> Opal Mining Co Ltd</div>
                 </div>
             </div>
 
-            <!-- Action Grid (Sticky Interactions) -->
-            <div class="px-6 pb-6">
-                <div class="grid grid-cols-2 gap-3">
-                    <button onclick="openPhoneModal('+971509601323')" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-opal-blue text-white font-bold hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95">
-                        <i data-lucide="phone" class="w-4 h-4"></i> Call
-                    </button>
-                    <a href="mailto:chakik@opal-grp.com" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold hover:border-opal-red hover:text-opal-red transition-all shadow-sm active:scale-95">
-                        <i data-lucide="mail" class="w-4 h-4"></i> Email
-                    </a>
-                    <a href="https://www.opal-grp.com" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 font-bold hover:border-opal-green hover:text-opal-green transition-all shadow-sm active:scale-95">
-                        <i data-lucide="globe" class="w-4 h-4"></i> Website
-                    </a>
-                    <button onclick="downloadVCard()" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-900 text-white font-bold hover:bg-gray-800 transition-all shadow-lg active:scale-95">
-                        <i data-lucide="user-plus" class="w-4 h-4"></i> Save
-                    </button>
-                </div>
+            <!-- Actions -->
+            <div class="px-6 pb-6 grid grid-cols-2 gap-3">
+                <button onclick="openPhoneModal('+971509601323')" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-opal-blue text-white font-bold hover:bg-blue-800 transition-all shadow-lg"><i data-lucide="phone" class="w-4 h-4"></i> Call</button>
+                <a href="mailto:chakik@opal-grp.com" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-gray-200 font-bold hover:text-opal-red transition-all"><i data-lucide="mail" class="w-4 h-4"></i> Email</a>
+                <a href="https://www.opal-grp.com" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-white border border-gray-200 font-bold hover:text-opal-green transition-all"><i data-lucide="globe" class="w-4 h-4"></i> Website</a>
+                <button onclick="downloadVCard()" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-900 text-white font-bold hover:bg-gray-800 transition-all shadow-lg"><i data-lucide="user-plus" class="w-4 h-4"></i> Save</button>
             </div>
 
-            <!-- Content Area -->
+            <!-- Body Content -->
             <div class="px-6 pb-8 space-y-6">
                 
-                <!-- Bio Section with Read More -->
-                <div class="glass-card p-5 rounded-2xl border-l-4 border-opal-red relative overflow-hidden">
-                    <div class="flex items-center gap-2 mb-3 text-opal-red font-bold text-xs uppercase tracking-wider">
-                        <i data-lucide="award" class="w-4 h-4"></i> Investment & Financial Expert
-                    </div>
-                    
+                <!-- Bio -->
+                <div class="glass-card p-5 rounded-2xl border-l-4 border-opal-red">
+                    <div class="flex items-center gap-2 mb-3 text-opal-red font-bold text-xs uppercase tracking-wider"><i data-lucide="award" class="w-4 h-4"></i> Expert Bio</div>
                     <div class="text-sm text-gray-600 leading-relaxed text-justify">
-                        <p class="mb-2">
-                            Mr. Ahmad Chakik brings over <strong>three decades of experience</strong> in investment, mining, and financial management, having held leadership roles in various companies across Africa and the United Arab Emirates.
-                        </p>
-                        
-                        <!-- Hidden Content -->
+                        <p class="mb-2">Mr. Ahmad Chakik brings over <strong>three decades of experience</strong> in investment, mining, and financial management across Africa and the UAE.</p>
                         <div id="extraBio" class="expandable-content">
-                            <p class="mb-2">
-                                He maintains an extensive network of strategic relationships spanning <strong>China, the Middle East, Asia, and Africa</strong>.
-                            </p>
-                            <p>
-                                A prominent Lebanese businessman known for his versatility, wide-ranging expertise, and strong international connections. He has successfully established multiple companies in Dubai, Turkey, Singapore, and Qatar, and currently represents several state-owned enterprises operating in the construction, power, and infrastructure sectors.
-                            </p>
+                            <p class="mb-2">He maintains strategic relationships spanning <strong>China, the Middle East, Asia, and Africa</strong>.</p>
+                            <p>A prominent Lebanese businessman, he has successfully established multiple companies in Dubai, Turkey, Singapore, and Qatar.</p>
                         </div>
                     </div>
-
-                    <!-- Read More Button -->
-                    <button id="readMoreBtn" onclick="toggleBio()" class="mt-3 flex items-center gap-1 text-xs font-bold text-opal-red hover:text-opal-blue transition-colors uppercase tracking-wider">
-                        Read More <i data-lucide="chevron-down" class="w-3 h-3 transition-transform duration-300" id="chevronIcon"></i>
+                    <button id="readMoreBtn" onclick="toggleBio()" class="mt-3 flex items-center gap-1 text-xs font-bold text-opal-red hover:text-opal-blue uppercase tracking-wider">
+                        Read More <i data-lucide="chevron-down" class="w-3 h-3" id="chevronIcon"></i>
                     </button>
                 </div>
 
-                <!-- Strategic Ventures (NEW SECTION) -->
+                <!-- BROCHURE CTA (PDF Modal Trigger) -->
+                <div onclick="openPdfModal()" class="relative overflow-hidden rounded-2xl shadow-2xl group cursor-pointer mt-2 bg-gray-900 hover:scale-[1.02] transition-transform duration-300">
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-opal-blue/20 rounded-full blur-[80px]"></div>
+                    <div class="relative z-10 p-8 flex flex-col items-start gap-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 text-opal-green font-mono text-xs uppercase tracking-widest"><span class="w-2 h-2 bg-opal-green rounded-full animate-pulse"></span> Company Profile</div>
+                            <h3 class="text-2xl font-black text-white leading-tight">OPAL WORLD <br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-opal-blue to-opal-green">DIGITAL BROCHURE</span></h3>
+                        </div>
+                        <button class="px-6 py-3 font-bold text-white bg-opal-blue rounded-xl shadow-lg w-full flex items-center justify-center gap-2 group-hover:bg-blue-700 transition-all">
+                            <span>Discover Now</span> <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Strategic Ventures -->
                 <div class="space-y-4">
-                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                        <div class="w-1 h-1 rounded-full bg-gray-400"></div> Strategic Ventures
-                    </h3>
-                    
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-gray-400"></div> Strategic Ventures</h3>
                     <div class="grid grid-cols-1 gap-3">
-                        <!-- Company 1 -->
-                        <div onclick="openCompanyModal(0)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer group hover:bg-white/80 transition-all">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden">
-                                    <img src="https://static.wixstatic.com/media/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png/v1/fill/w_444,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png" alt="Opal World Tech" class="w-full h-full object-contain">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-gray-900 group-hover:text-opal-blue transition-colors">Opal World Tech</h4>
-                                    <p class="text-[10px] text-gray-500">Technology & Digital Solutions</p>
-                                </div>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"></i>
-                            </div>
+                        <div onclick="openCompanyModal(0)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer hover:bg-white flex items-center gap-4">
+                            <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden"><img src="https://static.wixstatic.com/media/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png/v1/fill/w_444,h_86,al_c,q_85/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png" class="w-full h-full object-contain"></div>
+                            <div class="flex-1"><h4 class="text-sm font-bold text-gray-900">Opal World Tech</h4><p class="text-[10px] text-gray-500">Technology</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
                         </div>
-
-                        <!-- Company 2 -->
-                        <div onclick="openCompanyModal(1)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer group hover:bg-white/80 transition-all">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden">
-                                    <img src="https://static.wixstatic.com/media/e5c5f1_42116871cdda4d3c9a761de53851ee08~mv2.png/v1/fill/w_398,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Capture%20d%E2%80%99%C3%A9cran%202025-10-19%20%C3%A0%2021_11_58.png" alt="Opal SG" class="w-full h-full object-contain">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-gray-900 group-hover:text-opal-blue transition-colors">Opal SG</h4>
-                                    <p class="text-[10px] text-gray-500">Innovation Hub</p>
-                                </div>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"></i>
-                            </div>
+                        <div onclick="openCompanyModal(1)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer hover:bg-white flex items-center gap-4">
+                            <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden"><img src="https://static.wixstatic.com/media/e5c5f1_42116871cdda4d3c9a761de53851ee08~mv2.png/v1/fill/w_398,h_86,al_c,q_85/Capture%20d%E2%80%99%C3%A9cran%202025-10-19%20%C3%A0%2021_11_58.png" class="w-full h-full object-contain"></div>
+                            <div class="flex-1"><h4 class="text-sm font-bold text-gray-900">Opal SG</h4><p class="text-[10px] text-gray-500">Innovation Hub</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
                         </div>
-
-                        <!-- Company 3 -->
-                        <div onclick="openCompanyModal(2)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer group hover:bg-white/80 transition-all">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden">
-                                    <img src="https://static.wixstatic.com/media/e5c5f1_b2ede517abe649688e2164e58b289dd3~mv2.png/v1/fill/w_468,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OPAL%20GROUP%20(6)%20(1)_edited.png" alt="Opal Group" class="w-full h-full object-contain">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-gray-900 group-hover:text-opal-blue transition-colors">Opal Group</h4>
-                                    <p class="text-[10px] text-gray-500">Management Consultancy</p>
-                                </div>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"></i>
-                            </div>
+                        <div onclick="openCompanyModal(2)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer hover:bg-white flex items-center gap-4">
+                            <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden"><img src="https://static.wixstatic.com/media/e5c5f1_b2ede517abe649688e2164e58b289dd3~mv2.png/v1/fill/w_468,h_74,al_c,q_85/OPAL%20GROUP%20(6)%20(1)_edited.png" class="w-full h-full object-contain"></div>
+                            <div class="flex-1"><h4 class="text-sm font-bold text-gray-900">Opal Group</h4><p class="text-[10px] text-gray-500">Consultancy</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
                         </div>
-
-                        <!-- Company 4 -->
-                        <div onclick="openCompanyModal(3)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer group hover:bg-white/80 transition-all">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden">
-                                    <img src="https://static.wixstatic.com/media/e5c5f1_f91e6043a533419ca8e570a6b924c05d~mv2.png/v1/crop/x_0,y_0,w_1501,h_321/fill/w_376,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OPAL%20MINING_edited.png" alt="Opal Mining" class="w-full h-full object-contain">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-gray-900 group-hover:text-opal-blue transition-colors">Opal Mining</h4>
-                                    <p class="text-[10px] text-gray-500">Premium Gold Provider</p>
-                                </div>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"></i>
-                            </div>
+                         <div onclick="openCompanyModal(3)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer hover:bg-white flex items-center gap-4">
+                            <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden"><img src="https://static.wixstatic.com/media/e5c5f1_f91e6043a533419ca8e570a6b924c05d~mv2.png/v1/crop/x_0,y_0,w_1501,h_321/fill/w_376,h_74,al_c,q_85/OPAL%20MINING_edited.png" class="w-full h-full object-contain"></div>
+                            <div class="flex-1"><h4 class="text-sm font-bold text-gray-900">Opal Mining</h4><p class="text-[10px] text-gray-500">Mining</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
                         </div>
-
-                        <!-- Company 5 -->
-                        <div onclick="openCompanyModal(4)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer group hover:bg-white/80 transition-all">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden">
-                                    <img src="https://static.wixstatic.com/media/e5c5f1_1d82cb7eaf9142c5b40d925154bb3ccc~mv2.png/v1/crop/x_6,y_38,w_1379,h_304/fill/w_398,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/GLOBALOPAL.png" alt="Global Opal" class="w-full h-full object-contain">
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="text-sm font-bold text-gray-900 group-hover:text-opal-blue transition-colors">Global Opal (Qatar)</h4>
-                                    <p class="text-[10px] text-gray-500">Infrastructure & Power</p>
-                                </div>
-                                <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:translate-x-1 transition-transform"></i>
-                            </div>
+                         <div onclick="openCompanyModal(4)" class="glass-card p-4 rounded-xl border border-white/60 cursor-pointer hover:bg-white flex items-center gap-4">
+                            <div class="w-16 h-12 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm border border-gray-100 overflow-hidden"><img src="https://static.wixstatic.com/media/e5c5f1_1d82cb7eaf9142c5b40d925154bb3ccc~mv2.png/v1/crop/x_6,y_38,w_1379,h_304/fill/w_398,h_86,al_c,q_85/GLOBALOPAL.png" class="w-full h-full object-contain"></div>
+                            <div class="flex-1"><h4 class="text-sm font-bold text-gray-900">Global Opal</h4><p class="text-[10px] text-gray-500">Infrastructure</p></div><i data-lucide="chevron-right" class="w-4 h-4 text-gray-400"></i>
                         </div>
                     </div>
                 </div>
 
-                <!-- Visual Recognition -->
+                <!-- Visual Recognition (Two Wide Images) -->
                 <div class="space-y-4">
-                    <div class="relative h-40 w-full rounded-xl overflow-hidden shadow-md border border-white/50 group">
+                    <div class="relative h-64 w-full rounded-3xl overflow-hidden shadow-xl group border border-white/50">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                        <img src="https://www.opal-sg.com/images/design-mode/Ahmad%20Chakik%20Award.jpeg" alt="Award Ceremony" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute bottom-3 left-4 z-20">
-                            <p class="text-[10px] font-bold text-white uppercase tracking-wider bg-white/20 backdrop-blur px-2 py-1 rounded">Global Recognition</p>
+                        <img src="https://www.opal-sg.com/images/design-mode/Ahmad%20Chakik%20Award.jpeg" alt="Award Ceremony" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute bottom-6 left-6 z-20 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-lg">
+                            <p class="text-xs font-bold text-white uppercase tracking-wider">Global Recognition</p>
                         </div>
                     </div>
-
-                    <div class="relative h-40 w-full rounded-xl overflow-hidden shadow-md border border-white/50 group">
+                    <div class="relative h-64 w-full rounded-3xl overflow-hidden shadow-xl group border border-white/50">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-                        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strategic Leadership" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute bottom-3 left-4 z-20">
-                            <p class="text-[10px] font-bold text-white uppercase tracking-wider bg-white/20 backdrop-blur px-2 py-1 rounded">Strategic Leadership</p>
+                        <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Strategic Leadership" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute bottom-6 left-6 z-20 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-lg">
+                            <p class="text-xs font-bold text-white uppercase tracking-wider">Strategic Leadership</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Global Direct Lines Accordion -->
+                <!-- Direct Lines -->
                 <div class="bg-white/60 rounded-2xl border border-gray-200 overflow-hidden">
                     <div class="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
-                        <span class="font-bold text-sm text-gray-800 flex items-center gap-2">
-                            <i data-lucide="globe" class="w-4 h-4 text-opal-blue"></i> Global Direct Lines
-                        </span>
+                        <span class="font-bold text-sm text-gray-800 flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-opal-blue"></i> Direct Lines</span>
                     </div>
                     <div class="divide-y divide-gray-100">
-                        <button onclick="openPhoneModal('+971509601323')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left">
-                            <span class="text-xs font-medium text-gray-500">Dubai (HQ)</span>
-                            <span class="text-sm font-mono font-bold text-gray-800">+971 50 960 1323</span>
-                        </button>
-                        <button onclick="openPhoneModal('+97433961119')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left">
-                            <span class="text-xs font-medium text-gray-500">Qatar</span>
-                            <span class="text-sm font-mono font-bold text-gray-800">+974 3396 1119</span>
-                        </button>
-                        <button onclick="openPhoneModal('+96179139129')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left">
-                            <span class="text-xs font-medium text-gray-500">Lebanon</span>
-                            <span class="text-sm font-mono font-bold text-gray-800">+961 79 139 129</span>
-                        </button>
-                        <button onclick="openPhoneModal('+905388499119')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left">
-                            <span class="text-xs font-medium text-gray-500">Turkey</span>
-                            <span class="text-sm font-mono font-bold text-gray-800">+90 538 849 9119</span>
-                        </button>
-                        <button onclick="openPhoneModal('+249991959595')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left">
-                            <span class="text-xs font-medium text-gray-500">Sudan</span>
-                            <span class="text-sm font-mono font-bold text-gray-800">+249 99 195 9595</span>
-                        </button>
+                        <button onclick="openPhoneModal('+971509601323')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left"><span class="text-xs text-gray-500">Dubai</span><span class="text-sm font-mono font-bold">+971 50 960 1323</span></button>
+                        <button onclick="openPhoneModal('+97433961119')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left"><span class="text-xs text-gray-500">Qatar</span><span class="text-sm font-mono font-bold">+974 3396 1119</span></button>
+                        <button onclick="openPhoneModal('+96179139129')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left"><span class="text-xs text-gray-500">Lebanon</span><span class="text-sm font-mono font-bold">+961 79 139 129</span></button>
+                        <button onclick="openPhoneModal('+905388499119')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left"><span class="text-xs text-gray-500">Turkey</span><span class="text-sm font-mono font-bold">+90 538 849 9119</span></button>
+                        <button onclick="openPhoneModal('+249991959595')" class="w-full px-4 py-3 flex justify-between items-center hover:bg-white transition-colors text-left"><span class="text-xs text-gray-500">Sudan</span><span class="text-sm font-mono font-bold">+249 99 195 9595</span></button>
                     </div>
                 </div>
 
-                <!-- Social Links -->
-                <div class="flex justify-center gap-4 pt-2">
-                    <a href="https://linkedin.com/in/ahmadchakik" target="_blank" class="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:scale-110 transition-all text-[#0077b5]">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
-                    </a>
-                    <a href="https://twitter.com/ahmadchakik" target="_blank" class="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:scale-110 transition-all text-[#1da1f2]">
-                        <i data-lucide="twitter" class="w-5 h-5"></i>
-                    </a>
-                    <a href="https://facebook.com/ahmad.chakik" target="_blank" class="p-3 bg-white rounded-full shadow-sm hover:shadow-md hover:scale-110 transition-all text-[#1877f2]">
-                        <i data-lucide="facebook" class="w-5 h-5"></i>
-                    </a>
-                </div>
-
-                <div class="text-center pt-4">
-                    <p class="text-[10px] text-gray-400 uppercase tracking-wider">
-                        Opal World Technologies © 2025
-                    </p>
-                </div>
+                <div class="text-center pt-4 text-[10px] text-gray-400">Opal World Technologies © 2025</div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- CALL MODAL -->
-    <div id="callModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative transform scale-95 transition-transform duration-300" id="modalContent">
-            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
-                <i data-lucide="x" class="w-4 h-4"></i>
-            </button>
-
-            <div class="text-center mb-8 pt-2">
-                <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-opal-blue">
-                    <i data-lucide="phone" class="w-8 h-8"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900">Choose Method</h3>
-                <p id="modalPhoneDisplay" class="text-gray-500 mt-2 font-mono text-lg tracking-wide">--</p>
-            </div>
-
-            <div class="space-y-3">
-                <a id="btnNormalCall" href="#" class="flex items-center justify-center gap-3 w-full py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg">
-                    <i data-lucide="phone" class="w-5 h-5"></i> Cellular Call
-                </a>
-                <a id="btnWhatsappCall" href="#" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white font-bold rounded-xl hover:bg-[#128C7E] transition-all shadow-lg">
-                    <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
-                </a>
-            </div>
+    <div id="callModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl transform scale-95 transition-transform" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <div class="text-center mb-6 pt-2"><div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 text-opal-blue"><i data-lucide="phone" class="w-8 h-8"></i></div><h3 class="text-xl font-bold text-gray-900">Choose Method</h3></div>
+            <div class="space-y-3"><a id="btnNormalCall" href="#" class="flex items-center justify-center gap-3 w-full py-4 bg-gray-900 text-white font-bold rounded-xl"><i data-lucide="phone" class="w-5 h-5"></i> Cellular Call</a><a id="btnWhatsappCall" href="#" target="_blank" class="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white font-bold rounded-xl"><i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp</a></div>
         </div>
     </div>
 
     <!-- COMPANY MODAL -->
-    <div id="companyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl relative transform scale-95 transition-transform duration-300" id="companyModalContent">
+    <div id="companyModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl transform scale-95 transition-transform" id="companyModalContent">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-opal-red via-opal-blue to-opal-green"></div>
-            
-            <button onclick="closeCompanyModal()" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
-                <i data-lucide="x" class="w-4 h-4"></i>
-            </button>
-
-            <div class="text-center mb-6 pt-6">
-                <div class="w-24 h-16 bg-white border border-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4 p-2 shadow-sm overflow-hidden">
-                    <img id="modalCompanyLogo" src="" alt="Company Logo" class="w-full h-full object-contain">
-                </div>
-                <h3 id="modalCompanyTitle" class="text-xl font-black text-gray-900 leading-tight"></h3>
-            </div>
-
-            <p id="modalCompanyDesc" class="text-sm text-gray-600 text-center mb-8 leading-relaxed px-2"></p>
-
-            <div class="space-y-3">
-                <a id="modalCompanyLink" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-opal-blue text-white font-bold rounded-xl hover:bg-blue-800 transition-all shadow-md">
-                    <i data-lucide="globe" class="w-4 h-4"></i> Visit Website
-                </a>
-                <a href="mailto:chakik@opal-grp.com?subject=Inquiry via Digital Profile" class="flex items-center justify-center gap-2 w-full py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl hover:bg-gray-50 transition-all">
-                    <i data-lucide="mail" class="w-4 h-4"></i> Contact Chairman
-                </a>
-            </div>
+            <button onclick="closeCompanyModal()" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+            <div class="text-center mb-6 pt-6"><div class="w-24 h-16 bg-white border border-gray-100 rounded-lg flex items-center justify-center mx-auto mb-4 p-2 shadow-sm overflow-hidden"><img id="modalCompanyLogo" src="" class="w-full h-full object-contain"></div><h3 id="modalCompanyTitle" class="text-xl font-black text-gray-900 leading-tight"></h3></div>
+            <p id="modalCompanyDesc" class="text-sm text-gray-600 text-center mb-8 px-2"></p>
+            <div class="space-y-3"><a id="modalCompanyLink" href="#" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 bg-opal-blue text-white font-bold rounded-xl"><i data-lucide="globe" class="w-4 h-4"></i> Visit Website</a><a href="mailto:chakik@opal-grp.com" class="flex items-center justify-center gap-2 w-full py-3 bg-white border border-gray-200 text-gray-700 font-bold rounded-xl"><i data-lucide="mail" class="w-4 h-4"></i> Contact Chairman</a></div>
         </div>
     </div>
 
-    <!-- LOGIC -->
+    <!-- PDF DOWNLOAD MODAL (NEW) -->
+    <div id="pdfModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-sm rounded-3xl p-8 shadow-2xl transform scale-95 transition-transform" id="pdfModalContent">
+             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-opal-red via-opal-blue to-opal-green"></div>
+             <button onclick="closePdfModal()" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full hover:bg-gray-200"><i data-lucide="x" class="w-4 h-4"></i></button>
+             
+             <div class="text-center mb-6 pt-4">
+                 <div class="w-20 h-20 bg-opal-green/10 rounded-full flex items-center justify-center mx-auto mb-4 text-opal-green animate-pulse-slow">
+                     <i data-lucide="file-text" class="w-10 h-10"></i>
+                 </div>
+                 <h3 class="text-2xl font-black text-gray-900">Digital Brochure</h3>
+                 <p class="text-xs font-mono text-gray-400 uppercase mt-2">Opal World Technologies 2025</p>
+             </div>
+
+             <p class="text-sm text-gray-600 text-center mb-8 leading-relaxed">
+                 Access our full corporate profile, including case studies on AI, Blockchain, and our strategic alliance with BeiDou.
+             </p>
+
+             <a href="https://drive.google.com/file/d/1yD5c8eJDTE0KRhisycLp3iu4ojkROIso/view?usp=drive_link" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl">
+                 <span>View PDF Profile</span> <i data-lucide="external-link" class="w-4 h-4"></i>
+             </a>
+        </div>
+    </div>
+
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
-        // --- DATA ---
+        // --- PROFILE INTERACTION ---
         const companyData = [
-            {
-                title: "Opal World Technologies",
-                logo: "https://static.wixstatic.com/media/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png/v1/fill/w_444,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png",
-                desc: "Explore the Future. Embrace innovation and unlock new possibilities for your business with our cutting-edge solutions. Let us guide you through the tech landscape and drive your success forward.",
-                link: "http://opalworldtech.com/"
-            },
-            {
-                title: "Opal SG",
-                logo: "https://static.wixstatic.com/media/e5c5f1_42116871cdda4d3c9a761de53851ee08~mv2.png/v1/fill/w_398,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Capture%20d%E2%80%99%C3%A9cran%202025-10-19%20%C3%A0%2021_11_58.png",
-                desc: "Driving innovation in Singapore and Southeast Asia. Our strategic hub for technological advancement and digital infrastructure solutions.",
-                link: "http://opal-sg.com/"
-            },
-            {
-                title: "Opal Group",
-                logo: "https://static.wixstatic.com/media/e5c5f1_b2ede517abe649688e2164e58b289dd3~mv2.png/v1/fill/w_468,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OPAL%20GROUP%20(6)%20(1)_edited.png",
-                desc: "A premier Management Consultancy firm delivering strategic oversight, financial planning, and operational excellence across multinational ventures.",
-                link: "https://www.opal-grp.com/home"
-            },
-            {
-                title: "Opal Mining",
-                logo: "https://static.wixstatic.com/media/e5c5f1_f91e6043a533419ca8e570a6b924c05d~mv2.png/v1/crop/x_0,y_0,w_1501,h_321/fill/w_376,h_74,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/OPAL%20MINING_edited.png",
-                desc: "Mining's Future leaders. Your Premium Provider of Gold. We operate sustainable and high-yield mining projects across Africa.",
-                link: "http://opal-mining.com/"
-            },
-            {
-                title: "Global Opal",
-                logo: "https://static.wixstatic.com/media/e5c5f1_1d82cb7eaf9142c5b40d925154bb3ccc~mv2.png/v1/crop/x_6,y_38,w_1379,h_304/fill/w_398,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/GLOBALOPAL.png",
-                desc: "Qatar-based infrastructure and power enterprise, delivering state-of-the-art engineering projects for national development.",
-                link: "http://www.opalglobal-qatar.com/"
-            }
+            { title: "Opal World Technologies", logo: "https://static.wixstatic.com/media/e5c5f1_e20db5de443545f98acb2a6b38113ab2~mv2.png", desc: "Explore the Future. Embrace innovation and unlock new possibilities.", link: "http://opalworldtech.com/" },
+            { title: "Opal SG", logo: "https://static.wixstatic.com/media/e5c5f1_42116871cdda4d3c9a761de53851ee08~mv2.png", desc: "Driving innovation in Singapore and Southeast Asia.", link: "http://opal-sg.com/" },
+            { title: "Opal Group", logo: "https://static.wixstatic.com/media/e5c5f1_b2ede517abe649688e2164e58b289dd3~mv2.png", desc: "A premier Management Consultancy firm.", link: "https://www.opal-grp.com/home" },
+            { title: "Opal Mining", logo: "https://static.wixstatic.com/media/e5c5f1_f91e6043a533419ca8e570a6b924c05d~mv2.png", desc: "Mining's Future leaders. Premium Provider of Gold.", link: "http://opal-mining.com/" },
+            { title: "Global Opal", logo: "https://static.wixstatic.com/media/e5c5f1_1d82cb7eaf9142c5b40d925154bb3ccc~mv2.png", desc: "Qatar-based infrastructure and power enterprise.", link: "http://www.opalglobal-qatar.com/" }
         ];
 
-        // --- COMPANY MODAL LOGIC ---
-        const companyModal = document.getElementById('companyModal');
-        const companyContent = document.getElementById('companyModalContent');
-        const cLogo = document.getElementById('modalCompanyLogo');
-        const cTitle = document.getElementById('modalCompanyTitle');
-        const cDesc = document.getElementById('modalCompanyDesc');
-        const cLink = document.getElementById('modalCompanyLink');
+        // Modals Logic
+        function showModal(mId, cId) {
+            const m = document.getElementById(mId); const c = document.getElementById(cId);
+            m.classList.remove('hidden');
+            setTimeout(() => { m.classList.remove('opacity-0'); c.classList.remove('scale-95'); c.classList.add('scale-100'); }, 10);
+        }
+        function hideModal(mId, cId) {
+            const m = document.getElementById(mId); const c = document.getElementById(cId);
+            m.classList.add('opacity-0'); c.classList.remove('scale-100'); c.classList.add('scale-95');
+            setTimeout(() => m.classList.add('hidden'), 300);
+        }
 
         function openCompanyModal(index) {
             const data = companyData[index];
-            
-            // Populate Data
-            cLogo.src = data.logo;
-            cTitle.innerText = data.title;
-            cDesc.innerText = data.desc;
-            cLink.href = data.link;
-
-            // Animation
-            companyModal.classList.remove('hidden');
-            setTimeout(() => {
-                companyModal.classList.remove('opacity-0');
-                companyContent.classList.remove('scale-95');
-                companyContent.classList.add('scale-100');
-            }, 10);
+            document.getElementById('modalCompanyLogo').src = data.logo;
+            document.getElementById('modalCompanyTitle').innerText = data.title;
+            document.getElementById('modalCompanyDesc').innerText = data.desc;
+            document.getElementById('modalCompanyLink').href = data.link;
+            showModal('companyModal', 'companyModalContent');
         }
-
-        function closeCompanyModal() {
-            companyModal.classList.add('opacity-0');
-            companyContent.classList.remove('scale-100');
-            companyContent.classList.add('scale-95');
-            setTimeout(() => {
-                companyModal.classList.add('hidden');
-            }, 300);
-        }
-
-        companyModal.addEventListener('click', (e) => {
-            if (e.target === companyModal) closeCompanyModal();
-        });
-
-
-        // --- BIO TOGGLE ---
-        function toggleBio() {
-            const content = document.getElementById('extraBio');
-            const btn = document.getElementById('readMoreBtn');
-            
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                btn.innerHTML = 'Read More <i data-lucide="chevron-down" class="w-3 h-3 ml-1"></i>';
-                lucide.createIcons();
-            } else {
-                content.classList.add('expanded');
-                btn.innerHTML = 'Show Less <i data-lucide="chevron-up" class="w-3 h-3 ml-1"></i>';
-                lucide.createIcons();
-            }
-        }
-
-        // --- PHONE MODAL LOGIC ---
-        const modal = document.getElementById('callModal');
-        const modalContent = document.getElementById('modalContent');
-        const phoneDisplay = document.getElementById('modalPhoneDisplay');
-        const btnNormal = document.getElementById('btnNormalCall');
-        const btnWhatsapp = document.getElementById('btnWhatsappCall');
-
+        function closeCompanyModal() { hideModal('companyModal', 'companyModalContent'); }
+        
         function openPhoneModal(number) {
-            const cleanNumber = number.replace(/\+/g, '');
-            phoneDisplay.innerText = number;
-            btnNormal.href = `tel:${number}`;
-            btnWhatsapp.href = `https://wa.me/${cleanNumber}`;
+            document.getElementById('btnNormalCall').href = `tel:${number}`;
+            document.getElementById('btnWhatsappCall').href = `https://wa.me/${number.replace(/\+/g,'')}`;
+            showModal('callModal', 'modalContent');
+        }
+        function closeModal() { hideModal('callModal', 'modalContent'); }
 
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-            }, 10);
+        // PDF Modal Logic (Replacing Brochure Overlay)
+        function openPdfModal() {
+            showModal('pdfModal', 'pdfModalContent');
+        }
+        function closePdfModal() {
+            hideModal('pdfModal', 'pdfModalContent');
         }
 
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+        function toggleBio() {
+            const c = document.getElementById('extraBio');
+            const b = document.getElementById('readMoreBtn');
+            if(c.classList.contains('expanded')) { c.classList.remove('expanded'); b.innerHTML = 'Read More <i data-lucide="chevron-down" class="w-3 h-3 ml-1"></i>'; }
+            else { c.classList.add('expanded'); b.innerHTML = 'Show Less <i data-lucide="chevron-up" class="w-3 h-3 ml-1"></i>'; }
+            lucide.createIcons();
         }
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // --- vCARD LOGIC ---
         function downloadVCard() {
-            const vCardContent = [
-                'BEGIN:VCARD',
-                'VERSION:3.0',
-                'FN:Ahmad Chakik',
-                'N:Chakik;Ahmad;;;',
-                'TITLE:Chairman',
-                'ORG:Opal Management Consultancy Pte. Ltd.',
-                'TEL;TYPE=WORK,VOICE:+971509601323',
-                'TEL;TYPE=WORK,VOICE;X-LABEL=Qatar:+97433961119',
-                'TEL;TYPE=WORK,VOICE;X-LABEL=Lebanon:+96179139129',
-                'TEL;TYPE=WORK,VOICE;X-LABEL=Turkey:+905388499119',
-                'EMAIL;TYPE=WORK:chakik@opal-grp.com',
-                'URL:https://www.opalworldtech.com',
-                'ADR;TYPE=WORK:;;Dubai National Insurance Building, Office No. 302 Port Saeed;Dubai;;;UAE',
-                'END:VCARD'
-            ].join('\n');
+            const content = `BEGIN:VCARD\nVERSION:3.0\nFN:Ahmad Chakik\nTITLE:Chairman\nTEL:+971509601323\nEMAIL:chakik@opal-grp.com\nURL:https://www.opalworldtech.com\nEND:VCARD`;
+            const blob = new Blob([content], { type: 'text/vcard;charset=utf-8' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Ahmad_Chakik.vcf'; a.click();
+        }
 
-            const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Ahmad_Chakik.vcf');
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        // Close modals on click outside
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('callModal')) closeModal();
+            if (event.target == document.getElementById('companyModal')) closeCompanyModal();
+            if (event.target == document.getElementById('pdfModal')) closePdfModal();
         }
     </script>
 </body>
